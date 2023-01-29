@@ -69,3 +69,36 @@ const reprocutor = {
     }
 }
 reprocutor.reproducir();
+
+//10-ARROW FUNCTIONS
+//11-VENTAJAS DE LOS ARROW FUNCTIONS
+console.log('10-arrow functions');
+console.log('11-arrow functions-VENTAJAS');
+const learning = function(){
+    console.log('learning js');
+}
+
+const learning2 = (tecnologia) => `Aprendiendo ${tecnologia}`;
+const learning3 = red => `Aprendiendo ${red}`;
+
+learning();
+learning2('java');
+console.log(learning3('redes concava'));
+
+//12-  ARROW FUNCTIONS EN UN FOREACH Y UN MAP
+//foreach
+primos = [2,3,5,7,11,13];
+console.log('..forEach');
+primos.forEach( element => {
+    console.log(element);
+});
+//.map 
+console.log('.map');
+const cpyPrimos = primos.map( elemento =>  elemento);
+console.log(cpyPrimos);
+
+//13 arrow functions en objetos
+reprocutor.cantar = () => console.log('Cantando');
+console.log(reprocutor);
+reprocutor.reproducir();
+reprocutor.cantar();
