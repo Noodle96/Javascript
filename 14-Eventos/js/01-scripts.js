@@ -58,7 +58,7 @@ const busqueda = document.querySelector('.busqueda');
 // });
 
 
-//---------PASTE
+//---------CUT
 // busqueda.addEventListener('cut',()=>{
 //     console.log('Se ha cortado algo de texto en el form.....');
 // });
@@ -67,3 +67,13 @@ const busqueda = document.querySelector('.busqueda');
 busqueda.addEventListener('input',(e)=>{
     console.log(e.target.value);
 });
+
+//004-EVENTO SUBMIT A UN FORMULARIO
+console.log('004--- ');
+const formulario = document.querySelector('#formulario');
+formulario.addEventListener('submit',validarFormulario);
+
+function validarFormulario(e){
+    e.preventDefault();
+    console.log(e);
+}
