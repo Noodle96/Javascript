@@ -133,6 +133,57 @@ enlace.href='/nuevoEnlace';
 enlace.target = '_blank';
 enlace.setAttribute('ss','dd');
 enlace.classList.add('nueva-clase');
+enlace.onclick = miFunction;
 // navegacion4.appendChild(enlace); // le agrega al final
 navegacion4.insertBefore(enlace,navegacion4.children[1]);
 console.log(enlace);
+
+function miFunction(){
+    alert('Diste Click');
+}
+
+//creando un card de forma dinamica
+console.log('Creando un card de forma dinamica');
+const parrafo1 = document.createElement('p');
+parrafo1.textContent = 'Concierto';
+parrafo1.classList.add('categoria','concierto');
+console.log(parrafo1);
+
+
+const parrafo2 = document.createElement('p');
+parrafo2.textContent = 'Concierto de Gorilaz';
+parrafo2.classList.add('titulo');
+console.log(parrafo2);
+
+const parrafo3 = document.createElement('p');
+parrafo3.textContent = '$1050 por persona';
+parrafo3.classList.add('precio');
+console.log(parrafo3);
+
+//crear div con la clase info
+const infoDiv = document.createElement('div');
+infoDiv.classList.add('info');
+
+//agregando parrafos dentro de info
+infoDiv.appendChild(parrafo1);
+infoDiv.appendChild(parrafo2);
+infoDiv.appendChild(parrafo3);
+console.log(infoDiv);
+//creando la imagen del card
+const imagenNueva = document.createElement('img');
+imagenNueva.src = 'img/hacer2.jpg';
+imagenNueva.classList.add('img-fluid');// responsive
+imagenNueva.alt = 'imagenTemplate';
+console.log(imagenNueva);
+//creando el div card(padre)
+const cardPadre = document.createElement('div');
+cardPadre.classList.add('card');
+cardPadre.appendChild(imagenNueva);
+cardPadre.appendChild(infoDiv);
+console.log(cardPadre);
+
+
+//agregando cardPadre al div contenedor-cards
+const contenedorCards = document.querySelector('.contenedor-cards');
+contenedorCards.appendChild(cardPadre);
+console.log(contenedorCards);
