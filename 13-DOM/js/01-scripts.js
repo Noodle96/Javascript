@@ -72,3 +72,67 @@ console.log(encabezado);
 const imagen = document.querySelector('.card img');
 imagen.src = 'img/hacer2.jpg';
 console.log(imagen);
+
+//007- CAMBIANDO EL CSS CON JAVASCRIPT
+const encabezadoH1 = document.querySelector('h1');
+console.log(encabezadoH1);
+// encabezadoH1.style.backgroundColor = 'red';
+// encabezadoH1.style.fontFamily = 'Arial';
+// encabezadoH1.style.textTransform = 'uppercase';
+const card2 = document.querySelector('.card');
+card2.classList.add('firstClass','segundaClase');
+// card2.classList.remove('card');
+console.log(card2);
+
+
+//008- TRAVERSING THE DOM
+console.log('008--- ');
+const navegacion2 = document.querySelector('.navegacion');
+console.log(navegacion2);
+console.log(navegacion2.childNodes);
+console.log(navegacion2.children);
+console.log(navegacion2.children[0].nodeName);
+console.log(navegacion2.children[0].nodeType);
+console.log('firstElementChild');
+console.log(navegacion2.firstElementChild);
+console.log(navegacion2.lastElementChild);
+
+const card3 = document.querySelector('.card');
+console.log(card3);
+card3.children[1].children[1].textContent = 'Nuevo heading desde traversing the DOM';
+console.log(card3.children[1].children[1].textContent);
+
+//del hijo al padre
+console.log(card3.parentElement.parentElement.parentElement);
+
+//entre hermanos
+console.log(card3);
+console.log(card3.nextElementSibling);
+console.log(card3.nextElementSibling.nextElementSibling);
+
+const ultimoCard = document.querySelector('.card:nth-child(4)');
+console.log(ultimoCard);
+console.log(ultimoCard.previousElementSibling);
+
+
+//009-ELIMINAR ELEMENTOS DEL DOM
+console.log('009---');
+const primerEnlace = document.querySelector('a')
+console.log(primerEnlace);
+// primerEnlace.remove();
+
+const navegacion4 = document.querySelector('.navegacion');
+console.log(navegacion4.children);
+navegacion4.removeChild(navegacion4.children[2]);
+
+//10-GENERAR HTML CON JAVASCRIPT
+console.log('10---');
+const enlace = document.createElement('a');
+enlace.textContent = 'Nuevo enlace';
+enlace.href='/nuevoEnlace';
+enlace.target = '_blank';
+enlace.setAttribute('ss','dd');
+enlace.classList.add('nueva-clase');
+// navegacion4.appendChild(enlace); // le agrega al final
+navegacion4.insertBefore(enlace,navegacion4.children[1]);
+console.log(enlace);
