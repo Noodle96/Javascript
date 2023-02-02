@@ -77,3 +77,38 @@ function validarFormulario(e){
     e.preventDefault();
     console.log(e);
 }
+
+//005EVENTOS AL DAR SCROLL CON EL MOUSE
+console.log('005--');
+window.addEventListener('scroll', ()=>{
+    const premium = document.querySelector('.premium');
+    // console.log('scrolling');
+    const ubicacion = premium.getBoundingClientRect();
+    // console.log(ubicacion);
+    if(ubicacion.top < 900){
+        console.log('el elemento ya esta visible');
+    }else{
+        console.log('Aun no , da mas scroll');
+    }
+});
+
+//006--- EVENT BUBLING
+console.log('006----');
+const cardB = document.querySelector('.card');
+const infoDivB = document.querySelector('.info');
+const tituloB = document.querySelector('.titulo');
+//con e.stopPropagation() detenemos la propagacion de hijos a padres
+cardB.addEventListener('click',(e)=> {
+    e.stopPropagation();
+    console.log('Click en card');
+});
+
+infoDivB.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    console.log('Click en infoDiv');
+});
+
+tituloB.addEventListener('click',(e)=>{
+    e.stopPropagation();
+    console.log('Click en titulo');
+});
