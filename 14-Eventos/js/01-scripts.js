@@ -98,17 +98,38 @@ const cardB = document.querySelector('.card');
 const infoDivB = document.querySelector('.info');
 const tituloB = document.querySelector('.titulo');
 //con e.stopPropagation() detenemos la propagacion de hijos a padres
-cardB.addEventListener('click',(e)=> {
-    e.stopPropagation();
-    console.log('Click en card');
-});
 
-infoDivB.addEventListener('click', (e)=>{
-    e.stopPropagation();
-    console.log('Click en infoDiv');
-});
+// cardB.addEventListener('click',(e)=> {
+//     e.stopPropagation();
+//     console.log('Click en card');
+// });
 
-tituloB.addEventListener('click',(e)=>{
-    e.stopPropagation();
-    console.log('Click en titulo');
+// infoDivB.addEventListener('click', (e)=>{
+//     e.stopPropagation();
+//     console.log('Click en infoDiv');
+// });
+
+// tituloB.addEventListener('click',(e)=>{
+//     e.stopPropagation();
+//     console.log('Click en titulo');
+// });
+
+//007 PREVENIR EL EVENT BUBBLING CON DELEGATION
+console.log('007---- ');
+cardB.addEventListener('click', e=>{
+    if(e.target.classList.contains('card')){
+        console.log('Diste click en card');
+    }
+    if(e.target.classList.contains('info')){
+        console.log('Diste click en info');
+    }
+    if(e.target.classList.contains('categoria')){
+        console.log('Diste click en categoria');
+    }
+    if(e.target.classList.contains('titulo')){
+        console.log('Diste click en titulo');
+    }
+    if(e.target.classList.contains('precio')){
+        console.log('Diste click en precio');
+    }
 });
