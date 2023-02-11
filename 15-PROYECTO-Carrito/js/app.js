@@ -32,9 +32,22 @@ function leerDatosCurso(cursoCuerpo){
         id: cursoCuerpo.querySelector('a').getAttribute('data-id'),
         cantidad: 1,
     }
-    // console.log(infoCurso);
-    articulosCarrito = [...articulosCarrito, infoCurso];
-    // console.log(articulosCarrito);
+
+    //REVISA SI EL ELEMENTO YA EXISTE EN EL CARRITO
+    const existe = articulosCarrito.some(curso => curso.id === infoCurso.id);
+    // console.log(existe);
+    if(existe){
+        const cursos = articulosCarrito.map((curso)=>{
+            if(curso.id === infoCurso.id){
+                curso.cantidad++;
+                return curso;
+            }
+            return curso;
+        });
+        articulosCarrito = [...cursos];
+    }else{
+        articulosCarrito = [...articulosCarrito, infoCurso];
+    }
     carritoHTML();
 }
 
