@@ -50,8 +50,21 @@ function carritoHTML(){
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>
+                <img src=${infoCurso.imagen} width='100'>
+            </td>
+            <td>
                 ${infoCurso.titulo}
             </td>
+            <td>
+                ${infoCurso.precio}
+            </td>
+            <td>
+                ${infoCurso.cantidad}
+            </td>
+            <td>
+                <a href="#" class="borrar-curso" data-id=${infoCurso.id} >X</a
+            </td>
+
         `;
         //AGREGA EL HTML DEL CARRITO EN EL TBODY
         contenedorCarrito.appendChild(row);
