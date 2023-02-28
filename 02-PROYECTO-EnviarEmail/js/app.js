@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function(){
     const inputAsunto = document.querySelector('#asunto');
     const inputMensaje = document.querySelector('#mensaje');
 
-
-    console.log(inputMensaje);
+    //EVENTOS IDEALES PARA VALIDAR EL FORMULARIO:
+    //event blur cuando abandonas un campo
+    inputEmail.addEventListener('blur', function(e){
+        console.log(e.target.value);
+    });
 });
