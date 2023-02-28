@@ -7,7 +7,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //EVENTOS IDEALES PARA VALIDAR EL FORMULARIO:
     //event blur cuando abandonas un campo
-    inputEmail.addEventListener('blur', function(e){
+    inputEmail.addEventListener('blur', validar);
+    inputAsunto.addEventListener('blur', validar);
+    inputMensaje.addEventListener('blur', validar);
+
+    function validar(e){
         console.log(e.target.value);
-    });
+    }
 });
