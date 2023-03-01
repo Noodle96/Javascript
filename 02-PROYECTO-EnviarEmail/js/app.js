@@ -24,6 +24,11 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     function generarAlertaHTML(msg, referenciaPadre){
+        //verificando que ya existe una alerta
+        const alerta = referenciaPadre.querySelector('.bg-red-600');
+        if(alerta){
+            alerta.remove();
+        }
         const error = document.createElement('p');
         error.textContent = msg;
         error.classList.add('bg-red-600','text-white','p-2','text-center');
