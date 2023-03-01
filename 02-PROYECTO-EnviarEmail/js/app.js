@@ -18,20 +18,24 @@ document.addEventListener('DOMContentLoaded', function(){
         // console.log(e.target.parentElement);
         if(e.target.value.trim() === ''){
             generarAlertaHTML(`El campo ${e.target.id} es obligatorio`,e.target.parentElement);
-        }else{
-            console.log('no vacio');
+            return;
         }
+        limpiarAlerta(e.target.parentElement);
     }
 
     function generarAlertaHTML(msg, referenciaPadre){
         //verificando que ya existe una alerta
-        const alerta = referenciaPadre.querySelector('.bg-red-600');
-        if(alerta){
-            alerta.remove();
-        }
+        limpiarAlerta(referenciaPadre);
         const error = document.createElement('p');
         error.textContent = msg;
         error.classList.add('bg-red-600','text-white','p-2','text-center');
         referenciaPadre.appendChild(error);
+    }
+
+    function limpiarAlerta(referenciaPadre){
+        const alerta = referenciaPadre.querySelector('.bg-red-600');
+        if(alerta){
+            alerta.remove();
+        }
     }
 });
