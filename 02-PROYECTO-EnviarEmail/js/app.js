@@ -14,17 +14,18 @@ document.addEventListener('DOMContentLoaded', function(){
 
     function validar(e){
         //validando que el campo no este vacio
+        // console.log(e.target.id);
         if(e.target.value.trim() === ''){
-            generarAlertaHTML();
+            generarAlertaHTML(`El campo ${e.target.id} es obligatorio`);
         }else{
             console.log('no vacio');
         }
     }
 
-    function generarAlertaHTML(){
+    function generarAlertaHTML(msg){
         const error = document.createElement('p');
-        error.textContent = 'Hubo un error';
-        error.classList.add('bg-red-700','text-white','p-2','text-center');
+        error.textContent = msg;
+        error.classList.add('bg-red-600','text-white','p-2','text-center');
         formulario.appendChild(error);
     }
 });
