@@ -35,7 +35,17 @@ document.addEventListener('DOMContentLoaded', function(){
         e.preventDefault();
         spinner.classList.add('flex');
         spinner.classList.remove('hidden');
-        console.log('Enviando');
+        
+        setTimeout(() => {
+            spinner.classList.remove('flex');
+            spinner.classList.add('hidden');
+            
+            data.email = '';
+            data.asunto = '';
+            data.mensaje = '';
+            formulario.reset();
+            comprobarData();
+        }, 3000);
     }
 
     function validar(e){
