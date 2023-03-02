@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const inputAsunto = document.querySelector('#asunto');
     const inputMensaje = document.querySelector('#mensaje');
     const formulario = document.querySelector('#formulario');
+    const btnSubmit = document.querySelector('#formulario button[type="submit"]');
     const data = {
         email: '',
         asunto: '',
@@ -13,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //EVENTOS IDEALES PARA VALIDAR EL FORMULARIO:
     //event blur cuando abandonas un campo
-    inputEmail.addEventListener('blur', validar);
-    inputAsunto.addEventListener('blur', validar);
-    inputMensaje.addEventListener('blur', validar);
+    inputEmail.addEventListener('input', validar);
+    inputAsunto.addEventListener('input', validar);
+    inputMensaje.addEventListener('input', validar);
 
     function validar(e){
         //validando que el campo no este vacio
@@ -23,10 +24,14 @@ document.addEventListener('DOMContentLoaded', function(){
         // console.log(e.target.parentElement);
         if(e.target.value.trim() === ''){
             generarAlertaHTML(`El campo ${e.target.id} es obligatorio`,e.target.parentElement);
+            data[e.target.id] = '';
+            comprobarData();
             return;
         }
         if(e.target.id === 'email' && !validarEmail(e.target.value)){
             generarAlertaHTML('El email no es valido', e.target.parentElement);
+            data[e.target.id] = '';
+            comprobarData();
             return;
         }
         limpiarAlerta(e.target.parentElement);
@@ -56,6 +61,13 @@ document.addEventListener('DOMContentLoaded', function(){
         return regex.test(email);
     }
     function comprobarData(){
-        console.log(Object.values(data).includes(''));
+        // console.log(data);
+        if(Object.values(data).includes('')){
+            btnSubmit.classList.add('opacity-50');
+            btnSubmit.disabled = true;
+        }else{
+            btnSubmit.classList.remove('opacity-50');
+            btnSubmit.disabled = false;
+        }
     }
 });
