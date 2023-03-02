@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function(){
     const formulario = document.querySelector('#formulario');
     const btnSubmit = document.querySelector('#formulario button[type="submit"]');
     const btnReset = document.querySelector('#formulario button[type="reset"]');
+    const spinner = document.querySelector('#spinner');
+    // console.log(spinner);
     const data = {
         email: '',
         asunto: '',
@@ -26,6 +28,15 @@ document.addEventListener('DOMContentLoaded', function(){
         formulario.reset();
         comprobarData();
     });
+
+    formulario.addEventListener('submit', enviarEmail);
+    
+    function enviarEmail(e){
+        e.preventDefault();
+        spinner.classList.add('flex');
+        spinner.classList.remove('hidden');
+        console.log('Enviando');
+    }
 
     function validar(e){
         //validando que el campo no este vacio
