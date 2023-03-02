@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', function(){
     const inputAsunto = document.querySelector('#asunto');
     const inputMensaje = document.querySelector('#mensaje');
     const formulario = document.querySelector('#formulario');
+    const data = {
+        email: '',
+        asunto: '',
+        mensaje: '',
+    }
 
     //EVENTOS IDEALES PARA VALIDAR EL FORMULARIO:
     //event blur cuando abandonas un campo
@@ -25,6 +30,10 @@ document.addEventListener('DOMContentLoaded', function(){
             return;
         }
         limpiarAlerta(e.target.parentElement);
+        data[e.target.id] = e.target.value;
+        // console.log(data);
+        //comorobar que el objeto data este lleno
+        comprobarData(); // VERIFICA QUE LOS ELEMENTOS DE ESTE NO ESTEN VACIOS
     }
 
     function generarAlertaHTML(msg, referenciaPadre){
@@ -45,5 +54,8 @@ document.addEventListener('DOMContentLoaded', function(){
     function validarEmail(email){
         const regex =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/ 
         return regex.test(email);
+    }
+    function comprobarData(){
+        console.log(Object.values(data).includes(''));
     }
 });
