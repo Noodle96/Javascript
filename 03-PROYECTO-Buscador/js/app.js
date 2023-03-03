@@ -70,7 +70,8 @@ transmision.addEventListener('change',(e)=>{
 });
 color.addEventListener('change',(e)=>{
     datosBusqueda.color = e.target.value;
-    console.log(datosBusqueda);
+    filtrarAuto();
+    // console.log(datosBusqueda);
 });
 
 
@@ -105,7 +106,8 @@ function llenarSelectYear(){
 function filtrarAuto(){
     const resultado = autos.filter(filtrarMarca).filter(filtrarByYear)
                         .filter(filtrarByMinimo).filter(filtrarByMaximo)
-                        .filter(filtrarByPuertas).filter(filtrarByTransmision);
+                        .filter(filtrarByPuertas).filter(filtrarByTransmision)
+                        .filter(filtrarByColor);
     console.log(resultado);
 }
 
@@ -143,6 +145,12 @@ function filtrarByTransmision(auto){
     const {transmision} = datosBusqueda;
     if(transmision){
         return auto.transmision === transmision;
+    }
+    return auto;
+}
+function filtrarByColor(auto){
+    if(datosBusqueda.color){
+        return auto.color === datosBusqueda.color;
     }
     return auto;
 }
