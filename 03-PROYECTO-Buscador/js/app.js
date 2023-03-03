@@ -116,7 +116,18 @@ function filtrarAuto(){
                         .filter(filtrarByPuertas).filter(filtrarByTransmision)
                         .filter(filtrarByColor);
     // console.log(resultadoFinal);
-    mostrarAutos(resultadoFinal);
+    if(resultadoFinal.length){
+        mostrarAutos(resultadoFinal);
+    }else{
+        noResultado();
+    }
+}
+function noResultado(){
+    limpiarHTML();
+    const noResultado = document.createElement('div');
+    noResultado.textContent = "No hay resultados";
+    noResultado.classList.add('alerta','error');
+    resultado.appendChild(noResultado);
 }
 
 function filtrarMarca(auto){
