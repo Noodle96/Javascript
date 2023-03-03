@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // console.log('desde DOMContentLoaded');
     //seleccionar los elementos de la interfaz
     const inputEmail = document.querySelector('#email');
+    const inputDestinatario = document.querySelector('#destinatario');
     const inputAsunto = document.querySelector('#asunto');
     const inputMensaje = document.querySelector('#mensaje');
     const formulario = document.querySelector('#formulario');
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // console.log(spinner);
     const data = {
         email: '',
+        // destinatario : '',
         asunto: '',
         mensaje: '',
     }
@@ -18,11 +20,13 @@ document.addEventListener('DOMContentLoaded', function(){
     //EVENTOS IDEALES PARA VALIDAR EL FORMULARIO:
     //event blur cuando abandonas un campo
     inputEmail.addEventListener('input', validar);
+    inputDestinatario.addEventListener('input',validar);
     inputAsunto.addEventListener('input', validar);
     inputMensaje.addEventListener('input', validar);
     btnReset.addEventListener('click',function(e){
         e.preventDefault();
         data.email = '';
+        // data.destinatario='';
         data.asunto = '';
         data.mensaje = '';
         formulario.reset();
@@ -41,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function(){
             spinner.classList.add('hidden');
 
             data.email = '';
+            // data.destinatario = '';
             data.asunto = '';
             data.mensaje = '';
             formulario.reset();
@@ -67,12 +72,15 @@ document.addEventListener('DOMContentLoaded', function(){
             comprobarData();
             return;
         }
-        if(e.target.id === 'email' && !validarEmail(e.target.value)){
+        if((e.target.id === 'email' || e.target.id === 'destinatario' ) && !validarEmail(e.target.value)){
             generarAlertaHTML('El email no es valido', e.target.parentElement);
             data[e.target.id] = '';
             comprobarData();
             return;
         }
+
+
+
         limpiarAlerta(e.target.parentElement);
         data[e.target.id] = e.target.value;
         // console.log(data);
