@@ -2,7 +2,6 @@
 //LOCALSTORAGE  store only string
 // Convert object to string => JSON.stringify(object)
 // Convert string to Object => JSON.parse(string);
-
 localStorage.setItem('Nick', 'Russell');
 localStorage.setItem('Age',1);
 //STORE ONE OBJECT IN LOCALSTORAGE
@@ -46,3 +45,17 @@ console.log(typeof productoParseado); //object
 console.log(typeof mesesParseado); //object
 console.log(productoParseado); // print objecto
 console.log(mesesParseado); // print array
+
+
+//OO3--  clear, update and remove
+console.log('003--');
+localStorage.removeItem('Age');
+
+
+//update item of locaStorage
+const mesesArray = JSON.parse(localStorage.getItem('meses'));
+mesesArray.push('May');
+localStorage.setItem('meses',JSON.stringify(mesesArray));
+// console.log(mesesArray);
+
+// localStorage.clear();
