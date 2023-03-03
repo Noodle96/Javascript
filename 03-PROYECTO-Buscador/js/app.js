@@ -54,9 +54,11 @@ year.addEventListener('change',(e)=>{
 });
 minimo.addEventListener('change',(e)=>{
     datosBusqueda.minimo = parseInt(e.target.value);
+    filtrarAuto();
 });
 maximo.addEventListener('change',(e)=>{
     datosBusqueda.maximo = parseInt(e.target.value);
+    filtrarAuto();
 });
 puertas.addEventListener('change',(e)=>{
     datosBusqueda.puertas = parseInt(e.target.value);
@@ -99,9 +101,11 @@ function llenarSelectYear(){
 
 //FUNCION QUE FILTRA EN BASE A LA BUSQUEDA
 function filtrarAuto(){
-    const resultado = autos.filter(filtrarMarca).filter(filtrarByYear);
+    const resultado = autos.filter(filtrarMarca).filter(filtrarByYear)
+                        .filter(filtrarByMinimo).filter(filtrarByMaximo);
     console.log(resultado);
 }
+
 function filtrarMarca(auto){
     if(datosBusqueda.marca){
         return auto.marca === datosBusqueda.marca;
@@ -111,6 +115,18 @@ function filtrarMarca(auto){
 function filtrarByYear(auto){
     if(datosBusqueda.year){
         return auto.year === datosBusqueda.year;
+    }
+    return auto;
+}
+function filtrarByMinimo(auto){
+    if(datosBusqueda.minimo){
+        return auto.precio >= datosBusqueda.minimo;
+    }
+    return auto;
+}
+function filtrarByMaximo(auto){
+    if(datosBusqueda.maximo){
+        return auto.precio <= datosBusqueda.maximo;
     }
     return auto;
 }
