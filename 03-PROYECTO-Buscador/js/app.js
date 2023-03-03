@@ -20,6 +20,7 @@ const colores = ['#C0C0C0','#808080','#000000','#FF0000','#800000','#FFFF00',
 const maxYear = new Date().getFullYear();
 const minYear = maxYear - 10;
 
+
 //GENERAR UN OBJETO PARA LA BUSQUEDA
 const datosBusqueda = {
     marca: '',
@@ -36,7 +37,7 @@ const datosBusqueda = {
 //EVENTOS
 document.addEventListener('DOMContentLoaded', ()=>{
     // muestra los auto de la DB (db.js)
-    mostrarAutos();
+    mostrarAutos(autos);
 
     // llena las option del campo year
     llenarSelectYear();
@@ -77,8 +78,9 @@ color.addEventListener('change',(e)=>{
 
 
 //FUNCIONES
-function mostrarAutos(){
-    autos.forEach((auto,index) => {
+function mostrarAutos(db_autos){
+    limpiarHTML();
+    db_autos.forEach((auto,index) => {
         const {marca, modelo,year,precio,puertas,color,transmision} = auto;
         const rowAuto = document.createElement('P');
         rowAuto.style.color = colores[Math.floor(Math.random() * colores.length)];
@@ -92,6 +94,11 @@ function mostrarAutos(){
         resultado.appendChild(rowAuto);
     });
 }
+function limpiarHTML(){
+    while(resultado.firstChild){
+        resultado.removeChild(resultado.firstChild);
+    }
+}
 
 function llenarSelectYear(){
     for(let i_year = maxYear; i_year >=minYear; i_year--){
@@ -104,11 +111,12 @@ function llenarSelectYear(){
 
 //FUNCION QUE FILTRA EN BASE A LA BUSQUEDA
 function filtrarAuto(){
-    const resultado = autos.filter(filtrarMarca).filter(filtrarByYear)
+    const resultadoFinal = autos.filter(filtrarMarca).filter(filtrarByYear)
                         .filter(filtrarByMinimo).filter(filtrarByMaximo)
                         .filter(filtrarByPuertas).filter(filtrarByTransmision)
                         .filter(filtrarByColor);
-    console.log(resultado);
+    // console.log(resultadoFinal);
+    mostrarAutos(resultadoFinal);
 }
 
 function filtrarMarca(auto){
