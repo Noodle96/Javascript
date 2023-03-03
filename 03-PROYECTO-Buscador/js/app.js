@@ -62,6 +62,7 @@ maximo.addEventListener('change',(e)=>{
 });
 puertas.addEventListener('change',(e)=>{
     datosBusqueda.puertas = parseInt(e.target.value);
+    filtrarAuto();
 });
 transmision.addEventListener('change',(e)=>{
     datosBusqueda.transmision = e.target.value;
@@ -102,7 +103,8 @@ function llenarSelectYear(){
 //FUNCION QUE FILTRA EN BASE A LA BUSQUEDA
 function filtrarAuto(){
     const resultado = autos.filter(filtrarMarca).filter(filtrarByYear)
-                        .filter(filtrarByMinimo).filter(filtrarByMaximo);
+                        .filter(filtrarByMinimo).filter(filtrarByMaximo)
+                        .filter(filtrarByPuertas);
     console.log(resultado);
 }
 
@@ -127,6 +129,12 @@ function filtrarByMinimo(auto){
 function filtrarByMaximo(auto){
     if(datosBusqueda.maximo){
         return auto.precio <= datosBusqueda.maximo;
+    }
+    return auto;
+}
+function filtrarByPuertas(auto){
+    if(datosBusqueda.puertas){
+        return auto.puertas === datosBusqueda.puertas;
     }
     return auto;
 }
