@@ -9,11 +9,11 @@ function eventListeners(){
     // Cuando el usuario agrega un nuevo tweet
     formulario.addEventListener('submit',agregarTweet);
 
-    // Cuando el documento esta listo
+    // Cuando el documento esta listo INIT
     document.addEventListener('DOMContentLoaded',()=>{
         tweets = JSON.parse(localStorage.getItem('tweets')) || [];
         mostrarTweetHTML();
-        console.log(tweets);
+        // console.log(tweets);
     });
 }
 
@@ -55,8 +55,16 @@ function mostrarTweetHTML(){
     limpiarHTML();
     if(tweets.length > 0){
         tweets.forEach((tweet)=>{
+            const btnEliminar = document.createElement('a');
+            btnEliminar.innerText = 'X';
+            btnEliminar.classList.add('borrar-tweet');
+            btnEliminar.onclick = () =>{
+                borrarTweet(tweet.id);
+            }
+
             const li = document.createElement('li');
             li.innerText = tweet.tweet;
+            li.appendChild(btnEliminar);
             listTweets.appendChild(li);
         });
     }
@@ -69,4 +77,11 @@ function limpiarHTML(){
     while (listTweets.firstChild) {
         listTweets.removeChild(listTweets.firstChild);
     }
+}
+
+//BORRAR UN TWEET tTMB LOCALSTORAGE
+function borrarTweet(id){
+    tweets = tweets.filter(tweet => tweet.id !== id);
+    console.log(tweets);
+    mostrarTweetHTML();
 }
