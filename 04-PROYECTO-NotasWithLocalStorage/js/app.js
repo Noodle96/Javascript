@@ -18,7 +18,15 @@ function agregarTweet(e){
         mostrarError('Un mensaje no puede ir vacio');
         return;
     }
-    console.log('enviando tweet');
+    const objTweet = {
+        id: Date.now(),
+        tweet: tweet,
+    }
+    tweets = [...tweets, objTweet];
+    formulario.reset();
+
+    //mostrar tweet en el HTML
+    mostrarTweetHTML();
 
 }
 
@@ -33,4 +41,20 @@ function mostrarError(msg){
     setTimeout(() => {
         mensajeError.remove();
     }, 3000);
+}
+
+function mostrarTweetHTML(){
+    limpiarHTML();
+    if(tweets.length > 0){
+        tweets.forEach((tweet)=>{
+            const li = document.createElement('li');
+            li.innerText = tweet.tweet;
+            listTweets.appendChild(li);
+        });
+    }
+}
+function limpiarHTML(){
+    while (listTweets.firstChild) {
+        listTweets.removeChild(listTweets.firstChild);
+    }
 }
