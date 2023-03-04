@@ -12,5 +12,25 @@ function eventListeners(){
 //FUNCIONES
 function agregarTweet(e){
     e.preventDefault();
-    console.log('Agregando Tweet');
+    //TEXT AREA DONDE EL USUARIO ESCRIBE
+    const tweet = document.querySelector('#tweet').value.trim();
+    if(tweet === ''){
+        mostrarError('Un mensaje no puede ir vacio');
+        return;
+    }
+    console.log('enviando tweet');
+
+}
+
+function mostrarError(msg){
+    const mensajeError = document.createElement('p');
+    mensajeError.textContent = msg;
+    mensajeError.classList.add('error');
+    //insertar en el contenido
+    const contenido = document.querySelector('#contenido');
+    contenido.appendChild(mensajeError);
+
+    setTimeout(() => {
+        mensajeError.remove();
+    }, 3000);
 }
