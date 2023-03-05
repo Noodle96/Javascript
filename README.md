@@ -31,6 +31,6 @@
 - [Shopping Cart with LocalStorage](#updating)
 - [Insurance quoter](#insurance-quoter)
 
-# Shopping-cart
+# Shopping Cart
 
 [(Back to top)](#table-of-contents)
