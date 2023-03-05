@@ -23,6 +23,7 @@
 
 # Sent email validation
 [(Back to top)](#table-of-contents)
+
 The following project simulates the process of submitting a form and aims to validate fields **Email**, **Addressee**, **Subject** and **Message** so that the submit button is finally enabled.
 
 
