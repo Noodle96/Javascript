@@ -604,9 +604,12 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+/* edit by russell */
 .bg-pink-600 {
   --tw-bg-opacity: 1;
-  background-color: rgb(219 39 119 / var(--tw-bg-opacity));
+  /* background-color: rgb(219 39 119 / var(--tw-bg-opacity)); */
+  background-color: rgb(11 85 213 / var(--tw-bg-opacity));
+
 }
 
 .bg-gray-800 {
