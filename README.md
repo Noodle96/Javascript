@@ -1,6 +1,5 @@
 # JavaScript Portfolio
 
-
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](http://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com)
@@ -9,9 +8,12 @@
 
 # Table of contents
 
-- [JavaScript Portfolio](#javascript-portfolio)
-- [Table of contents](#table-of-contents)
 - [Shopping Cart](#shopping-cart)
+    - Home Screen
+    - Validation email field
+    - Some empty field
+    - All field complete
+    - Alert sent email
 - [Sent email validation](#sent-email-validation)
 - [Car finder](#car-finder)
 - [Notes with LocalStorage](#notes-with-localstorage)
@@ -28,9 +30,28 @@ The following project simulates the process of submitting a form and aims to val
 
 
 - Home Screen
-
 <p align="center">
-  <img src='assets/img/sendEmail_initial.png' width='800px' />
+  <img src='assets/img/sendEmail_initial.png' width='500px' />
+</p>
+
+- Validation email field : requerid and valid email
+<p align="center">
+    <img src="assets/img/sendEmail_emailIncorrecto.png" width="500"/> <img src="assets/img/sendEmail_emailObligatorio.png" width="515"/> 
+</p>
+
+- Some empty field
+<p align="center">
+  <img src='assets/img/sendEmail_algunCampovacio.png' width='500px' />
+</p>
+
+- All field complete: enabled send button
+<p align="center">
+  <img src='assets/img/sendEmail_camposLlenos.png' width='500px' />
+</p>
+
+- Alert sent email
+<p align="center">
+  <img src='assets/img/sendEmail_mensajeEnviado.png' width='500px' />
 </p>
 
 # Car finder
