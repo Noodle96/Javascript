@@ -3,6 +3,45 @@ function Seguro(marca, year, tipoCobertura){
     this.year = year;
     this.tipoCobertura = tipoCobertura;
 }
+//PROTOTYPE PARA CALCULAR EL SEGURO
+Seguro.prototype.calcularCotizaSeguro = function(){
+    /*
+        1 = Americano 1.15
+        2 = Asiatico 1.05
+        3 = Europeo 1.35
+    */
+   let cantidad;
+   const base = 1000;
+
+   //VARIAR CANTIDAD RESPECTO A LA MARCA
+   switch (this.marca) {
+    case '1':
+        cantidad = base*1.15;
+        break;
+    case '2':
+        cantidad = base*1.05;
+        break;
+    case '3':
+        cantidad = base*1.35;
+        break;
+    default:
+        break;
+    }
+    //VARIAS CANTIDAD RESPECTO AL AÑO
+    const diferencia = new Date().getFullYear() - this.year;
+    cantidad -= ((diferencia*3)*cantidad)/100;
+    // VARIAR CANTIDAD RESPECTO TIPO DE COBERTURA
+    /**
+        * SI EL TIPO DE COBERTURA ES BASICA , SE LE COBRA UN 30% MAS .
+        * SI EL TIPO DE COBERTURA ES COMPLETA , SE LE COBRA UN 50% MAS .
+        */
+    if(this.tipoCobertura === 'basico'){
+        cantidad *= 1.3;
+    }else{
+        cantidad *= 1.5;
+    }
+    return cantidad;
+}
 
 function UI(){}
 
@@ -59,5 +98,6 @@ function verificarCampos(e){
         return;
     }
     ui.crearAlerta('Cotizando ...','correcto');
-
+    const seguro = new Seguro(marca, year, tipoCobertura);
+    seguro.calcularCotizaSeguro();
 }
