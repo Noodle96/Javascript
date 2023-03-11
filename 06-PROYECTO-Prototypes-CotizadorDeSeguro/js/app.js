@@ -69,6 +69,41 @@ UI.prototype.crearAlerta = (mensaje, tipo)=>{
     }, 3000);
 }
 
+UI.prototype.mostrarResultado = (total,seguro) => {
+    const {marca, year,tipoCobertura} = seguro;
+    let textMarca;
+    switch (marca) {
+        case '1':
+            textMarca = 'Americano';
+            break;
+        case '2':
+            textMarca = 'Asiático';
+            break;
+        case '3':
+            textMarca = 'Europeo';
+            break;
+        default:
+            break;
+    }
+    const div = document.createElement('DIV');
+    div.classList.add('mt-10');
+    div.innerHTML = `
+        <p class="header">Tu Resumen</p>
+        <p class="font-bold">Marca: <span class="font-normal">${textMarca}</span></p>
+        <p class="font-bold">Año: <span class="font-normal">${year}</span></p>
+        <p class="font-bold">Tipo: <span class="font-normal capitalize">${tipoCobertura}</span></p>
+        <p class="font-bold">Total: <span class="font-normal">$ ${total}</span></p>
+    `;
+    const resultadoDiv = document.querySelector('#resultado');
+
+    //MOSTRAR EL SPINNER
+    const spinner = document.querySelector('#cargando');
+    spinner.style.display = 'block';
+    setTimeout(() => {
+        spinner.style.display = 'none';
+        resultadoDiv.appendChild(div);    
+    }, 3000);
+}
 
 
 
@@ -98,6 +133,15 @@ function verificarCampos(e){
         return;
     }
     ui.crearAlerta('Cotizando ...','correcto');
+    //ELIMINAR EN CASO HAYA UN RESULTADO PREVIO
+    const resultados = document.querySelector("#resultado div");
+    if(resultados != null){
+        resultados.remove();
+    }
+
+    //INSTANCIAR EL SEGURO
     const seguro = new Seguro(marca, year, tipoCobertura);
-    seguro.calcularCotizaSeguro();
+    const total = seguro.calcularCotizaSeguro();
+    
+    ui.mostrarResultado(total,seguro);
 }
