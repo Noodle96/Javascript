@@ -6,6 +6,7 @@ function Seguro(marca, year, tipoCobertura){
 
 function UI(){}
 
+//llenar los años en el (select id:year)
 UI.prototype.llenarYears = ()=>{
     const maxYear = new Date().getFullYear();
     const minYear = maxYear-15;
@@ -17,6 +18,21 @@ UI.prototype.llenarYears = ()=>{
         selectYear.appendChild(option)
     }
 }
+//CREA Y MUESTRA UNA ALERTA DE EXITO O ERROR
+UI.prototype.crearAlerta = (mensaje, tipo)=>{
+    const div = document.createElement('DIV');
+    div.classList.add('mensaje', 'mt-10',tipo);
+    div.textContent = mensaje;
+    const formulario = document.querySelector('#cotizar-seguro');
+    formulario.insertBefore(div,document.querySelector('#resultado'));
+    setTimeout(() => {
+        div.remove();
+    }, 3000);
+}
+
+
+
+
 
 const ui = new UI();
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -34,14 +50,14 @@ function verificarCampos(e){
     e.preventDefault();
     //LEER EL CAMPO MARCA DEL FORM
     const marca = document.querySelector('#marca').value;
-    console.log(marca);
     //LEER EL CAMPO AÑO DEL FORM
     const year = document.querySelector('#year').value;
-    console.log(year);
     //LEEF RL CAMPO TIPO DE COBERTURA DEL FORM
     const tipoCobertura = document.querySelector('input[name="tipo"]:checked').value;
-    console.log(tipoCobertura);
-    if(marca === ''){
-        console.log('Marca vacia');
+    if(marca === '' || year === '' || tipoCobertura === ''){
+        ui.crearAlerta('Todos los campos son Obligatorios','error');
+        return;
     }
+    ui.crearAlerta('Cotizando ...','correcto');
+
 }
