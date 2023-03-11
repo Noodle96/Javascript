@@ -9,16 +9,20 @@
 # Table of contents
 
 - [Shopping Cart](#shopping-cart)
+- [Sent email validation](#sent-email-validation)
     - Home Screen
     - Validation email field
     - Some empty field
     - All field complete
     - Alert sent email
-- [Sent email validation](#sent-email-validation)
 - [Car finder](#car-finder)
 - [Notes with LocalStorage](#notes-with-localstorage)
 - [Shopping Cart with LocalStorage](#shopping-cart-with-localstorage)
 - [Insurance quoter](#insurance-quoter)
+    - Home Screen
+    - Show error alert
+    - Show correct alert
+    - Show resume
 
 # Shopping Cart
 [(Back to top)](#table-of-contents)
@@ -65,3 +69,25 @@ The following project simulates the process of submitting a form and aims to val
 
 # Insurance quoter
 [(Back to top)](#table-of-contents)
+
+The following project aims show a resume of Insurance Quoter, previous that, the fields **Mark**, **year** and **insurance type** would be with a valor to show the resume, otherwise show a error alert.
+
+- Home Screen
+<p align="center">
+  <img src='assets/img/insurance_quoter_home.png' width='800px' alt="home image"/>
+</p>
+
+- Show error alert
+<p align="center">
+  <img src='assets/img/insurance_quoter_errorAlert.png' width='800px' alt="error alert image"/>
+</p>
+
+- Show correct alert
+<p align="center">
+  <img src='assets/img/insurance_quoter_correctAlert.png' width='800px' alt="correct alert image"/>
+</p>
+
+- Show resume
+<p align="center">
+  <img src='assets/img/insurance_quoter_showResult.png' width='800px' alt="resume image" />
+</p>
