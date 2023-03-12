@@ -1,11 +1,12 @@
 // CLASS DECLARATION
 class Cliente{
+    #name;
     constructor(name, saldo){
-        this.name = name;
+        this.#name = name;
         this.saldo = saldo;
     }
     converToString(){
-        return `El nombre es ${this.name} y su saldo es ${this.saldo}`;
+        return `El nombre es ${this.#name} y su saldo es ${this.saldo}`;
     }
     static darBienvenida(){
         // return `Welcome ${this.name}`; //welcome Cliente
@@ -27,6 +28,7 @@ class Empresa extends Cliente{
 
 
 const pedro = new Cliente('Pedro', 350);
+// console.log(pedro.#name); //error ya que es privado
 console.log(pedro);
 console.log(pedro.converToString());
 console.log(Cliente.darBienvenida()); // welcome Cliente
