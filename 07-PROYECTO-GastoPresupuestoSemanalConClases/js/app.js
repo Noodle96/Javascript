@@ -10,6 +10,10 @@ class Presupuesto{
         this.restante = presupuesto;
         this.gastos = [];
     }
+    addGasto(gastoNuevo){
+        this.gastos = [...this.gastos,gastoNuevo];
+        console.log(this.gastos);
+    }
 }
 class UI{
     insertarPresupuesto(objetoPresupuesto){
@@ -54,11 +58,10 @@ function preguntarPresupuesto(){
 }
 
 function agregarGasto(e){
-    console.log('desde agrgar gastos');
     e.preventDefault();
     // LEER DATOS DEL FORMULARIO
     const gasto = document.querySelector('#gasto').value;
-    const cantidad = document.querySelector('#cantidad').value;
+    const cantidad = Number(document.querySelector('#cantidad').value);
     if(gasto === '' || cantidad === ''){
         ui.imprimirAlerta('Ambos campos son obligatorios','alert-danger');
         return;
@@ -67,4 +70,11 @@ function agregarGasto(e){
         ui.imprimirAlerta('Cantidad no válida','alert-danger');
         return;
     }
+    //GENERAR UN OBJETO CON EL GASTO
+    const gastoObjeto = {gasto,cantidad, id:Date.now()}
+
+    //AÑADIR UN NUEVO GASTO
+    presupuesto.addGasto(gastoObjeto);
+    ui.imprimirAlerta('Gasto agregado correctamente','alert-success');
+    formulario.reset();
 }
