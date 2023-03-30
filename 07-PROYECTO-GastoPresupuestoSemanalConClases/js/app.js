@@ -28,6 +28,25 @@ class UI{
     actualizarRestante(restante){
         document.querySelector('#restante').textContent = restante;
     }
+    verificarActualizarEstadoRestante(presupuestoObj){
+        const {presupuesto, restante} = presupuestoObj;
+        const restanteDiv = document.querySelector('.restante');
+
+        //comprobar <25
+        if(restante < (presupuesto/4) ){
+            restanteDiv.classList.remove('alert-success','alert-warning');
+            restanteDiv.classList.add('alert-danger');
+        }else if(restante < (presupuesto/2) ){
+            restanteDiv.classList.remove('alert-success','alert-danger');
+            restanteDiv.classList.add('alert-warning');
+        }
+
+        //si el restante es menor o igual a 0
+        if(restante <=0){
+            ui.imprimirAlerta('El presupuesto se ha agtado', 'alert-danger');
+            formulario.querySelector('button[type="submit"]').disabled = true;
+        }
+    }
     imprimirAlerta(mensaje,tipoMensaje){
         const div = document.createElement('div');
         div.classList.add('text-center','alert',tipoMensaje);
@@ -70,6 +89,7 @@ class UI{
             gastoListado.removeChild(gastoListado.firstChild);
         }
     }
+
 }
 
 // INSTANCIACION
@@ -119,6 +139,9 @@ function agregarGasto(e){
 
     const {restante} = presupuesto;
     ui.actualizarRestante(restante);
+    
+    // < 25: rojo, < 50: amarillo
+    ui.verificarActualizarEstadoRestante(presupuesto);
 
     //Imprimir y actualizar los gastos al HTML
     ui.mostrarActualizarListadoGastos();
