@@ -8,16 +8,12 @@
 
 # Table of contents
 
-- [Shopping Cart](#shopping-cart)
 - [Sent email validation](#sent-email-validation)
 - [Car finder](#car-finder)
 - [Notes with LocalStorage](#notes-with-localstorage)
-- [Shopping Cart with LocalStorage](#shopping-cart-with-localstorage)
 - [Insurance quoter](#insurance-quoter)
 - [Self Manage Budgets](#self-manage-budgets)
 
-# Shopping Cart
-[(Back to top)](#table-of-contents)
 
 # Sent email validation
 [(Back to top)](#table-of-contents)
@@ -30,6 +26,28 @@ The following project simulates the process of submitting a form and aims to val
   <img src='assets/img/sendEmail.png' width='500px' />
 </p>
 
+# Car Finder
+[(Back to top)](#table-of-contents)
+
+The following project allow you find a car with the next characteristics: **Company**, **year**, **min price**, **max price**, **doors**, **transmision** and  **color**. We will be consuming CarApi to show the car with the chosen characteristics, other case nothing to show.
+
+- [Link Car Finder](https://find-car-here.netlify.app/)
+- Home Screen
+<p align="center">
+  <img src='assets/img/findCar.png' width='900px' />
+</p>
+
+# Notes with LocalStorage
+[(Back to top)](#table-of-contents)
+
+We use LocaStorage to store every tweet or note.
+
+
+- [Link Notes](https://notes-day.netlify.app/)
+- Home Screen
+<p align="center">
+  <img src='assets/img/notes.png' width='900px' />
+</p>
 
 # Insurance quoter
 [(Back to top)](#table-of-contents)
