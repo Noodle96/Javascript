@@ -12,12 +12,20 @@ class Presupuesto{
     }
     addGasto(gastoNuevo){
         this.gastos = [...this.gastos,gastoNuevo];
+        this.calcularRestante();
+    }
+    calcularRestante(){
+        const gastado = this.gastos.reduce((total, gasto) => total + gasto.cantidad,0);
+        this.restante = this.presupuesto - gastado;
     }
 }
 class UI{
     insertarPresupuesto(objetoPresupuesto){
         const {presupuesto,restante} = objetoPresupuesto;
         document.querySelector('#total').textContent = presupuesto;
+        document.querySelector('#restante').textContent = restante;
+    }
+    actualizarRestante(restante){
         document.querySelector('#restante').textContent = restante;
     }
     imprimirAlerta(mensaje,tipoMensaje){
@@ -108,6 +116,9 @@ function agregarGasto(e){
     //AÑADIR UN NUEVO GASTO
     presupuesto.addGasto(gastoObjeto);
     ui.imprimirAlerta('Gasto agregado correctamente','alert-success');
+
+    const {restante} = presupuesto;
+    ui.actualizarRestante(restante);
 
     //Imprimir y actualizar los gastos al HTML
     ui.mostrarActualizarListadoGastos();
