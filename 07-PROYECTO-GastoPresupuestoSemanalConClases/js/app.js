@@ -52,7 +52,10 @@ class UI{
         if(restante <=0){
             ui.imprimirAlerta('El presupuesto se ha agtado', 'alert-danger');
             formulario.querySelector('button[type="submit"]').disabled = true;
+        }if(restante > 0){
+            formulario.querySelector('button[type="submit"]').disabled = false;
         }
+
     }
     imprimirAlerta(mensaje,tipoMensaje){
         const div = document.createElement('div');
