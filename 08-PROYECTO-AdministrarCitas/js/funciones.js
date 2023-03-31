@@ -10,9 +10,10 @@ import {
     formulario,
 } from './selectores.js';
 const administrarCitas = new Citas();
-const ui = new UI(administrarCitas);
+// const ui = new UI(administrarCitas);
+const ui = new UI();
 let modoEdicion = false;
-let DataBase;
+export let DataBase;
 const citaObj = {
     mascota: '',
     propietario: '',
@@ -76,8 +77,8 @@ export function validarAgregarCita(e){
     reiniciarObjetoGlobal();
 
     //Muestra todas las citas al HTML
-    ui.mostrarCitastoHTML(administrarCitas);
-    ui.showHeading(administrarCitas);
+    ui.mostrarCitastoHTML();
+    // ui.showHeading(administrarCitas);
 }
 //reinicia el objeto global
 export function reiniciarObjetoGlobal(){
@@ -91,12 +92,12 @@ export function reiniciarObjetoGlobal(){
 export function eliminarCita(id){
     administrarCitas.eliminarCita(id);
     //Muestra todas las citas al HTML
-    ui.mostrarCitastoHTML(administrarCitas);
+    ui.mostrarCitastoHTML();
     //mostrar un mensaje => cita eliminada
     const contenedorCitas = document.querySelector('.contenedor-citas');
     const hijoContenedorCitas = document.querySelector('#administra');
     ui.mostrarAlerta('Cita eliminada correctamente','alert-info', contenedorCitas, hijoContenedorCitas)
-    ui.showHeading(administrarCitas);
+    // ui.showHeading(administrarCitas);
 }
 export function cargarEdicion(cita){
     const { mascota, propietario,telefono,fecha, hora,sintomas,id} =  cita;
@@ -137,7 +138,8 @@ export function createDataBase_IndexDB(){
     crearDB.onsuccess = function(){
         console.log('DB creada');
         DataBase = crearDB.result;
-        // console.log(DataBase);
+        //mostrar las citas al cargar - IndexedDb ya esta lista
+        ui.mostrarCitastoHTML();
     }
 
     //definir el esquema
