@@ -49,6 +49,9 @@ class Citas{
         // console.log('desde eliminar cita');
         // console.log(this.citas);
     }
+    editarCita(citaActualizada){
+        this.citas = this.citas.map(cita => cita.id === citaActualizada.id ? citaActualizada:cita);
+    }
 }
 class UI{
     mostrarAlerta(mensaje, tipoMensaje,padre=contenedorFormlario, hijo=formulario){
@@ -180,6 +183,8 @@ function validarAgregarCita(e){
     }
     if(modoEdicion){
         ui.mostrarAlerta('Editado correctamente','alert-success');
+        //Pasar el objeto de la cita a edicion
+        administrarCitas.editarCita({...citaObj});
         formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
         fechaInput.disabled = false;
         horaInput.disabled = false;
