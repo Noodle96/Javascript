@@ -1,13 +1,5 @@
-import {
-    mascotaInput,
-    propietarioInput,
-    telefonoInput,
-    fechaInput,
-    horaInput,
-    sintomasInput,
-    formulario
-} from '../selectores.js';
-import {createUpdateObjCita, validarAgregarCita} from '../funciones.js';
+import {mascotaInput, propietarioInput, telefonoInput, fechaInput, horaInput, sintomasInput, formulario} from '../selectores.js';
+import {createUpdateObjCita, validarAgregarCita, createDataBase_IndexDB} from '../funciones.js';
 class App{
     constructor(){
         this.initApp();
@@ -20,6 +12,7 @@ class App{
         horaInput.addEventListener('change', createUpdateObjCita);
         sintomasInput.addEventListener('change', createUpdateObjCita);
         formulario.addEventListener('submit', validarAgregarCita);
+        createDataBase_IndexDB();
     }
 }
 export default App;

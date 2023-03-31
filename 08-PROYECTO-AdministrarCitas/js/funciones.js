@@ -7,12 +7,12 @@ import {
     fechaInput,
     horaInput,
     sintomasInput,
-    formulario
+    formulario,
 } from './selectores.js';
-
 const administrarCitas = new Citas();
 const ui = new UI(administrarCitas);
 let modoEdicion = false;
+let DataBase;
 const citaObj = {
     mascota: '',
     propietario: '',
@@ -111,4 +111,36 @@ export function cargarEdicion(cita){
     //cambiar el value del boton
     formulario.querySelector('button[type="submit"]').textContent = 'Guardar Cambios';
     modoEdicion = true;
+}
+//FUNCION PARA CREAR LA BASE DE DATOS EN INDEX DB
+export function createDataBase_IndexDB(){
+
+    //crear la base de datos en version 1.0
+    const crearDB = window.indexedDB.open('citasVeterinaria',1);
+    
+    //si hay un error
+    crearDB.onerror = function(){
+        console.log('Hubo un error con la creacion la BD');
+    }
+    //si todo salio bien
+    crearDB.onsuccess = function(){
+        console.log('DB creada');
+        DataBase = crearDB.result;
+        console.log(DataBase);
+    }
+
+    //definir el esquema
+    crearDB.onupgradeneeded = function(e){
+        const db = e.target.result;
+        const objectStore = db.createObjectStore('citasVet',{keyPath:'id', autoIncrement:true});
+        //Definir todas la columnas
+        objectStore.createIndex('mascota', 'mascota', {unique:false});
+        objectStore.createIndex('propietario', 'propietario', {unique:false});
+        objectStore.createIndex('telefono', 'telefono', {unique:false});
+        objectStore.createIndex('fecha', 'fecha', {unique:false});
+        objectStore.createIndex('hora', 'hora', {unique:false});
+        objectStore.createIndex('sintomas', 'sintomas', {unique:false});
+        objectStore.createIndex('id', 'id', {unique:true});
+        console.log('Database Lista');
+    }
 }
