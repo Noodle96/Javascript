@@ -54,8 +54,19 @@ export function validarAgregarCita(e){
         // administrarCitas.addCita(nuevaCita);
 
         //se pasa una copia cuando es 'OBJETO GLOBAL'
+        //añade ña nueva cita
         administrarCitas.addCita({...citaObj});
-        ui.mostrarAlerta('Cita Agregada Correctamente','alert-success');
+
+        //Inserta el registro en IndexedDb
+        const transaction = DataBase.transaction(['citasVet'],'readwrite');
+        //habilitar el objectStore
+        const objectStore = transaction.objectStore('citasVet');
+        //insertar en la DB
+        objectStore.add(citaObj);
+        transaction.oncomplete = ()=>{
+            ui.mostrarAlerta('Cita Agregada Correctamente','alert-success');
+        }
+        // ui.mostrarAlerta('Cita Agregada Correctamente','alert-success');
     }
 
     //resetearFormulario
@@ -126,7 +137,7 @@ export function createDataBase_IndexDB(){
     crearDB.onsuccess = function(){
         console.log('DB creada');
         DataBase = crearDB.result;
-        console.log(DataBase);
+        // console.log(DataBase);
     }
 
     //definir el esquema
