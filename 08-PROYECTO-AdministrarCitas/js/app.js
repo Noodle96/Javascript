@@ -6,6 +6,7 @@ const fechaInput = document.querySelector('#fecha');
 const horaInput = document.querySelector('#hora');
 const sintomasInput = document.querySelector('#sintomas');
 const formulario = document.querySelector('#nueva-cita');
+const contenedorFormlario = document.querySelector('.agregar-cita');
 const contenedorCitas = document.querySelector('#citas');
 
 //LISTENERS
@@ -39,15 +40,21 @@ class Citas{
     }
     addCita(cita){
         this.citas = [...this.citas,cita];
+        // console.log('dese add cita');
+        // console.log(this.citas);
+    }
+    eliminarCita(id){
+        this.citas = this.citas.filter(cita => cita.id != id);
+        // console.log('desde eliminar cita');
         // console.log(this.citas);
     }
 }
 class UI{
-    mostrarAlerta(mensaje, tipoMensaje){
+    mostrarAlerta(mensaje, tipoMensaje,padre=contenedorFormlario, hijo=formulario){
         const divError = document.createElement('div');
         divError.classList.add('text-center', 'alert', 'd-block','col-12', tipoMensaje);
         divError.textContent = mensaje;
-        document.querySelector('.agregar-cita').insertBefore(divError,formulario);
+        padre.insertBefore(divError,hijo);
         //quitar alerta despues de 4 segundos
         setTimeout(() => {
             divError.remove();
@@ -92,6 +99,18 @@ class UI{
                 <span class="font-weight-bolder">Sintomas: </span>${sintomas}
             `;
 
+            //btn para eliminar una cita
+            const btnEliminar = document.createElement('btn');
+            btnEliminar.classList.add('btn','btn-danger','mr-2');
+            btnEliminar.innerHTML = `
+                Eliminar <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+              
+            `;
+            btnEliminar.onclick = () => eliminarCita(id);
+
+
             //agregar heading and parrafos al divCita
             divCita.appendChild(mascotaHeading);
             divCita.appendChild(propietarioParrafo);
@@ -99,6 +118,7 @@ class UI{
             divCita.appendChild(fechaParrafo);
             divCita.appendChild(horaParrafo);
             divCita.appendChild(sintomasParrafo);
+            divCita.appendChild(btnEliminar);
 
 
             //agregar las citas al HTML(padre) => contenedorCitas
@@ -175,5 +195,14 @@ function reiniciarObjetoGlobal(){
     citaObj.fecha= '';
     citaObj.hora= '';
     citaObj.sintomas= '';
+}
+function eliminarCita(id){
+    administrarCitas.eliminarCita(id);
+    //Muestra todas las citas al HTML
+    ui.mostrarCitastoHTML(administrarCitas);
+    //mostrar un mensaje => cita eliminada
+    const contenedorCitas = document.querySelector('.contenedor-citas');
+    const hijoContenedorCitas = document.querySelector('#administra');
+    ui.mostrarAlerta('Cita eliminada correctamente','alert-info', contenedorCitas, hijoContenedorCitas)
 }
 /////////////////////////////////END////////////////////////////////
