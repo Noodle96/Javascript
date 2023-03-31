@@ -40,13 +40,23 @@ export function validarAgregarCita(e){
             return;
     }
     if(modoEdicion){
-        ui.mostrarAlerta('Editado correctamente','alert-success');
         //Pasar el objeto de la cita a edicion
         administrarCitas.editarCita({...citaObj});
-        formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
-        fechaInput.disabled = false;
-        horaInput.disabled = false;
-        modoEdicion = false;
+
+        //Edita en IndexDB
+        const transaction = DataBase.transaction(['citasVet'],'readwrite');
+        const objectStore = transaction.objectStore('citasVet');
+        objectStore.put(citaObj);
+        transaction.oncomplete = () => {
+            formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
+            ui.mostrarAlerta('Editado correctamente','alert-success');
+            fechaInput.disabled = false;
+            horaInput.disabled = false;
+            modoEdicion = false;
+        }
+        transaction.onerror = () => {
+            console.log('Hubo un error al actualizar');
+        }
     }else{
         //generar un id unico
         citaObj.id = Date.now();
