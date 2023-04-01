@@ -1,6 +1,7 @@
 const playBoard = document.querySelector('.play-board');
 const spanScore = document.querySelector('.score');
 const spanHighScore = document.querySelector('.score-high');
+const controls = document.querySelectorAll('.controls i');
 let foodX, foodY, snakeX=10, snakeY=5;
 let snakeBody = [];
 let velocityX = 0, velocityY = 0;
@@ -40,6 +41,10 @@ const handleGameOver = () =>{
     alert("Game Over!!, press Ok to replay");
     location.reload();
 }
+
+controls.forEach( key => {
+    key.addEventListener("click", () => changeDirection({key:key.dataset.key}));
+});
 
 const initGame = () => {
     if(gamerOver)return handleGameOver();

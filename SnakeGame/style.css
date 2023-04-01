@@ -57,6 +57,6 @@ body{
     width: calc(100% / 4);
     border-right: 1px solid #171b26;
 }
-.controls i:hover{
+/* .controls i:hover{
     transform: scale(1.3);
-}
+} */
