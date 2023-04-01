@@ -1,16 +1,39 @@
 const playBoard = document.querySelector('.play-board');
 let foodX, foodY, snakeX=10, snakeY=5;
+let velocityX = 0, velocityY = 0;
+
 const changeRandomFoodPosition = () => {
     foodX = Math.floor(Math.random() * 30) +1;
     foodY = Math.floor(Math.random() * 30) +1;
 }
+
+const changeDirection = (e) => {
+    // console.log(e);
+    // change velocity value based on key press
+    if(e.key === 'ArrowUp'){
+        velocityX = 0;
+        velocityY = -1;
+    }else if(e.key === 'ArrowDown'){
+        velocityX = 0;
+        velocityY = 1;
+    }else if(e.key === 'ArrowLeft'){
+        velocityX = -1;
+        velocityY = 0;
+    }else if(e.key === 'ArrowRight'){
+        velocityX = 1;
+        velocityY = 0;
+    }
+}
+
 const initGame = () => {
     
-    let htmlMarkup = `<div class="food" style="grid-area: ${foodX}/${foodY}"></div>`;
+    let htmlMarkup = `<div class="food" style="grid-area: ${foodY}/${foodX}"></div>`;
     //Updating the snake'head position based on the current velocity
-    
-    htmlMarkup += `<div class="head" style="grid-area: ${snakeX}/${snakeY}"></div>`;
+    snakeX += velocityX;
+    snakeY += velocityY;
+    htmlMarkup += `<div class="head" style="grid-area: ${snakeY}/${snakeX}"></div>`;
     playBoard.innerHTML = htmlMarkup;
 }
 changeRandomFoodPosition();
-initGame();
+setInterval(initGame, 125);
+document.addEventListener('keydown',changeDirection);
