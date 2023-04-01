@@ -101,13 +101,22 @@ export function reiniciarObjetoGlobal(){
 }
 export function eliminarCita(id){
     administrarCitas.eliminarCita(id);
-    //Muestra todas las citas al HTML
-    ui.mostrarCitastoHTML();
-    //mostrar un mensaje => cita eliminada
-    const contenedorCitas = document.querySelector('.contenedor-citas');
-    const hijoContenedorCitas = document.querySelector('#administra');
-    ui.mostrarAlerta('Cita eliminada correctamente','alert-info', contenedorCitas, hijoContenedorCitas)
-    // ui.showHeading(administrarCitas);
+
+    //ELIMINAR en el index db
+    const transaction = DataBase.transaction(['citasVet'],'readwrite');
+    const objectStore = transaction.objectStore('citasVet');
+    objectStore.delete(id)
+    transaction.oncomplete = () =>{
+        //Muestra todas las citas al HTML
+        ui.mostrarCitastoHTML();
+        //mostrar un mensaje => cita eliminada
+        const contenedorCitas = document.querySelector('.contenedor-citas');
+        const hijoContenedorCitas = document.querySelector('#administra');
+        ui.mostrarAlerta('Cita eliminada correctamente','alert-info', contenedorCitas, hijoContenedorCitas)
+    }
+    transaction.onerror = () =>{
+        console.log('Hubo un error en la eliminacion');
+    }
 }
 export function cargarEdicion(cita){
     const { mascota, propietario,telefono,fecha, hora,sintomas,id} =  cita;
