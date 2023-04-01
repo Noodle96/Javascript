@@ -8,6 +8,7 @@
 
 # Table of contents
 
+- [Snake Game](#snake-game)
 - [Sent email validation](#sent-email-validation)
 - [Car finder](#car-finder)
 - [Notes with LocalStorage](#notes-with-localstorage)
@@ -15,6 +16,14 @@
 - [Self Manage Budgets](#self-manage-budgets)
 - [Manage Vet](#manage-vet)
 
+# Snake Game
+[(Back to top)](#table-of-contents)
+
+- [Link Snake Game](https://snake-game-fun.netlify.app/)
+- Home Screen
+<p align="center">
+  <img src='assets/img/snakeGame.png' width='700px' />
+</p>
 
 # Sent email validation
 [(Back to top)](#table-of-contents)
